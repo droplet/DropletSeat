@@ -23,27 +23,26 @@
  */
 package org.spout.droplet.seat;
 
-import org.spout.api.component.type.EntityComponent;
+import org.spout.api.component.entity.EntityComponent;
 import org.spout.api.entity.Player;
 
 public class FreezeComponent extends EntityComponent {
-    
-    // This is our own component class which overrides the default positioning behaviour for sitting players and freezes them.
-    @Override
-    public void onTick(float dt) {
-        // We need to check if the owner of the component, in which this code is executed, is a player.
-        if(getOwner() instanceof Player) {
-            Player player = (Player) getOwner();
-            
-            // If the player is sitting, we will go on and freeze stop him from moving.
-            if(player.getData().get("sitting").equals(true)) {
-                // The player's new position is set to his old position, so that it stays the same while he is sitting.
-                if(player.getScene().isPositionDirty()) {
-                    player.getScene().setPosition(getOwner().getScene().getPosition());
-                    player.getNetworkSynchronizer().setPositionDirty();
-                }
-            }
-        }
-    }
-    
+	// This is our own component class which overrides the default positioning behaviour for sitting players and freezes them.
+	@Override
+	public void onTick(float dt) {
+		// We need to check if the owner of the component, in which this code is executed, is a player.
+		if(getOwner() instanceof Player) {
+			Player player = (Player) getOwner();
+
+			// If the player is sitting, we will go on and freeze stop him from moving.
+			if(player.getData().get("sitting").equals(true)) {
+				// The player's new position is set to his old position, so that it stays the same while he is sitting.
+				if(player.getScene().isPositionDirty()) {
+					player.getScene().setPosition(getOwner().getScene().getPosition());
+					player.getNetworkSynchronizer().setPositionDirty();
+				}
+			}
+		}
+	}
+	
 }

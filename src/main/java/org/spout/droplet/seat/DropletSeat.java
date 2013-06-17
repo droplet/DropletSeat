@@ -25,33 +25,30 @@ package org.spout.droplet.seat;
 
 import java.util.logging.Level;
 import org.spout.api.exception.ConfigurationException;
-import org.spout.api.plugin.CommonPlugin;
+import org.spout.api.plugin.Plugin;
 
-public class DropletSeat extends CommonPlugin {
-    SeatConfig config;
-    
-    
-    @Override
-    public void onEnable() {
-        config = new SeatConfig(getDataFolder());        
-        
-        try {
-            config.load();
-	} catch (ConfigurationException e) {
-            getLogger().log(Level.WARNING, "Error loading DropletSeat configuration", e);
+public class DropletSeat extends Plugin {
+	SeatConfig config;
+
+	@Override
+	public void onEnable() {
+		config = new SeatConfig(getDataFolder());		
+		try {
+			config.load();
+		} catch (ConfigurationException e) {
+			getLogger().log(Level.WARNING, "Error loading DropletSeat configuration", e);
+		}
+		getEngine().getEventManager().registerEvents(new EventListener(this), this);
+		getLogger().log(Level.INFO, "DropletSeat enabled.");
 	}
-        
-        getEngine().getEventManager().registerEvents(new EventListener(this), this);
-        getLogger().log(Level.INFO, "DropletSeat enabled.");
-    }
 
-    @Override
-    public void onDisable() {
-        getLogger().log(Level.INFO, "DropletSeat disabled.");        
-    }
-    
-    public SeatConfig getConfig() {
-        return config;
-    }
-    
+	@Override
+	public void onDisable() {
+		getLogger().log(Level.INFO, "DropletSeat disabled.");		
+	}
+	
+	public SeatConfig getConfig() {
+		return config;
+	}
+	
 }

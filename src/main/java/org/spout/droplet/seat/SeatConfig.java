@@ -31,18 +31,15 @@ import org.spout.api.util.config.ConfigurationHolderConfiguration;
 import org.spout.api.util.config.yaml.YamlConfiguration;
 
 public class SeatConfig extends ConfigurationHolderConfiguration {
-    public static final ConfigurationHolder BLOCKS = new ConfigurationHolder(new ArrayList<String>(), "DropletSeat", "blocks");
-    
-        
+	public static final ConfigurationHolder BLOCKS = new ConfigurationHolder(new ArrayList<String>(), "DropletSeat", "blocks");
+
 	public SeatConfig(File dataFolder) {
-            super(new YamlConfiguration(new File(dataFolder, "config.yml")));
+		super(new YamlConfiguration(new File(dataFolder, "config.yml")));
 	}
 
-        
 	@Override
 	public void load() throws ConfigurationException {
-            super.load();
-            super.save();
+		super.load();
+		super.save();
 	}
-        
 }

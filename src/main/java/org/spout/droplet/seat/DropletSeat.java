@@ -24,8 +24,9 @@
 package org.spout.droplet.seat;
 
 import java.util.logging.Level;
-import org.spout.api.exception.ConfigurationException;
+
 import org.spout.api.plugin.Plugin;
+import org.spout.cereal.config.ConfigurationException;
 
 public class DropletSeat extends Plugin {
 	SeatConfig config;
